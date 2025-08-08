@@ -17,8 +17,12 @@ Internal WordPress load testing tool via WP-CLI for staging environments where e
   - thresholds.php: Performance thresholds
   - integration-logger.php: External monitoring
 
-## Current Bugs (v2.0.0)
-1. **`--cache-headers` breaks `--burst`**: Flag interaction issue (only remaining bug)
+## Version History
+- **v2.1.0**: Enhanced cache header analysis, fixed cache headers/burst conflict, PHP 8.1+ compatibility
+- **v2.0.0**: Core load testing functionality with parallel testing support
+
+## Current Status (v2.1.0)
+- **All major bugs resolved**
 
 ## Platform Limitations (Pressable)
 - **Not bugs, but platform restrictions**:
