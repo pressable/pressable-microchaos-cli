@@ -18,8 +18,21 @@
 - **Files**: microchaos/core/commands.php lines 687, 1034
 - **Impact**: Prevents deprecation warnings on PHP 8.1+
 
+### Cache Headers Bug Fix - COMPLETED
+- **Issue**: Variable name collision (`$count` shadowing main parameter) broke burst logic
+- **Root cause**: Cache header processing loops used `$count` which conflicted with request count
+- **Fix**: Renamed loop variables to `$header_count` and `$url_count`
+- **Additional fix**: Added `reset_cache_headers()` to prevent accumulation across bursts
+
+### Cache Headers Enhancement - COMPLETED
+- **Per-request display**: Shows cache headers with each request result
+- **Accurate summary**: Percentage breakdown of all cache states (no hit/miss assumptions)
+- **Pressable-specific**: Clearly documented as Pressable-only feature
+- **Enhanced reporting**: Focus on x-ac (Edge Cache) and x-nananana (Batcache)
+
 ## Platform Understanding
 - **Pressable limitations documented**: Not bugs, but platform security measures
 - **Burst flag clarification**: Controls serial requests, not concurrent (works perfectly)
 - **Typical usage pattern**: Duration-based testing with high bursts (50-500+) for capacity planning
 - **Key metrics**: Requests/second + resource trends + Grafana monitoring data
+- **Cache analysis**: Provides detailed Pressable cache behavior insights
