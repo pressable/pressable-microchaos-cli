@@ -18,9 +18,15 @@ Internal WordPress load testing tool via WP-CLI for staging environments where e
   - integration-logger.php: External monitoring
 
 ## Current Bugs (v2.0.0)
-1. **`--progressive` mode broken**: Not accurately determining breaking point/capacity
-2. **`--cache-headers` breaks `--burst`**: Flag interaction issue
-3. **`--concurrency-mode=async` broken**: Not handling concurrent requests properly, breaks burst
+1. **`--cache-headers` breaks `--burst`**: Flag interaction issue (only remaining bug)
+
+## Platform Limitations (Pressable)
+- **Not bugs, but platform restrictions**:
+  - `--progressive` mode limited by ~10 request rate limiting
+  - `--concurrency-mode=async` cannot bypass serial processing
+  - All requests process serially due to loopback restrictions
+- **`--burst` flag works perfectly** - controls serial requests before pause, not concurrent
+- **Effective testing approach**: High burst values (50-500+) with duration-based testing
 
 ## Testing Capabilities
 - Standard load testing with various endpoints

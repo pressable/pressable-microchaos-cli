@@ -1,25 +1,26 @@
 # Next Steps
 
 ## Bug Fixes (Priority)
-1. Fix `--progressive` mode
-   - Issue: Not accurately determining breaking point or recommended capacity
-   - Likely cause: Test environment restrictions or threshold logic
-
-2. Fix `--cache-headers` breaking `--burst`
+1. Fix `--cache-headers` breaking `--burst`
    - Issue: Flag interaction causing burst functionality to fail
    - Need to investigate flag parsing/processing order
 
-3. Fix `--concurrency-mode=async`
-   - Issue: Not handling concurrent requests properly
-   - Breaks burst flag functionality
-   - Check curl_multi_exec implementation
+## Platform Limitations (Not Bugs)  
+- `--progressive` mode: Limited by Pressable's ~10 request rate limit on loopback
+- `--concurrency-mode=async`: Cannot bypass platform rate limits  
+- These are documented in README as platform limitations, not bugs
+- **Burst flag works as intended**: Controls serial requests before pause (not concurrent)
+
+## Completed
+- ✅ Fixed PHP 8.1+ deprecation warning (float to int conversion)
+- ✅ Documented Pressable platform limitations in README
+- ✅ Corrected understanding of burst flag usage patterns
 
 ## Investigation Needed
-- Review how flags are processed and potential conflicts
-- Examine progressive testing logic and thresholds
-- Check async concurrency implementation with curl_multi
+- Review how `--cache-headers` flag affects burst processing
+- Check for flag parsing conflicts
 
 ## Potential Improvements
 - Enhanced error handling and reporting
 - Better flag validation to prevent conflicts
-- More robust progressive testing algorithm
+- Platform detection to warn users about limitations
